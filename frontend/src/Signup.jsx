@@ -1,21 +1,20 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
 import Card from '@mui/material/Card'
 import { Typography } from '@mui/material'
 const Signup = () => {
-    const username = useRef();
-    const password = useRef();
+    const [username, setUsername] = useState(null);
+    const [password, setPassword] = useState(null);
     const submitHandler = (e) => {
         e.preventDefault();
-        const userName = username.current.value;
-        const passWord = password.current.value;
-        console.log(userName);
-        console.log(passWord);
+        console.log(username);
+        console.log(password);
+
         fetch("http://localhost:3001/admin/signup", {
             method: "POST",
             body: JSON.stringify({
-                userName, passWord
+                username: username, password: password
             }),
             headers: {
                 "Content-type": "application/json"
@@ -37,9 +36,9 @@ const Signup = () => {
             </div>
             <div style={{ display: "flex", justifyContent: "center" }}>
                 <Card variant={"outlined"} style={{ width: 400, padding: 20 }}>
-                    <TextField fullWidth={true} inputRef={username} id={"username"} label="Email" variant="outlined" />
+                    <TextField fullWidth={true} onChange={(e) => { setUsername(e.target.value) }} id={"username"} label="Email" variant="outlined" />
                     <br /><br />
-                    <TextField fullWidth={true} inputRef={password} id={"password"} label="Password" variant="outlined" />
+                    <TextField fullWidth={true} onChange={(e) => { setPassword(e.target.value) }} id={"password"} label="Password" variant="outlined" />
                     <br /><br />
                     <Button
                         size={"large"}

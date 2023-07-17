@@ -44,8 +44,8 @@ const authenticateJwt = (req, res, next) => {
 // Admin routes
 app.post('/admin/signup', (req, res) => {
     const { username, password } = req.body;
-    console.log(username);
-    console.log(password);
+    console.log(">>>>>", username);
+    console.log(".....", password);
     const admin = ADMINS.find(a => a.username === username);
     console.log("admin signup");
     if (admin) {
