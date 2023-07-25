@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 const AddCourse = () => {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
+    const [image, setImage] = useState("");
 
     const submitHandler = () => {
         fetch("http://localhost:3010/admin/courses", {
@@ -11,7 +12,7 @@ const AddCourse = () => {
             body: JSON.stringify({
                 title: title,
                 description: description,
-                imageLink: "",
+                imageLink: image,
                 published: true
             }),
             headers: {
@@ -40,6 +41,12 @@ const AddCourse = () => {
                         label="Description"
                         variant='outlined'
                         onChange={(e) => setDescription(e.target.value)}
+                    />
+                    <TextField
+                        fullWidth={true}
+                        label="ImageLink"
+                        variant='outlined'
+                        onChange={(e) => setImage(e.target.value)}
                     />
                     <Button
                         size={"large"}

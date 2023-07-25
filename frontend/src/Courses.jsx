@@ -23,7 +23,7 @@ const Courses = () => {
         fetchData();
     }, [])
     return (
-        <div>
+        <div style={{ display: "flex", flexWrap: "wrap" }}>
             {courses.map((course) => {
                 return <Course course={course} />
             })}
@@ -32,10 +32,13 @@ const Courses = () => {
 }
 
 function Course(props) {
-    const { title, description } = props.course;
+    const { title, description, imageLink } = props.course;
     return <Card style={{ margin: 10, width: 300, minHeight: 200 }}>
         <Typography textAlign="center" variant="h6">{title}</Typography>
         <Typography textAlign="center" variant="subtitle1">{description}</Typography>
+        <img src={imageLink} style={{
+            width: "100%",
+        }} />
     </Card>
 
 
