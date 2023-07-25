@@ -10,7 +10,7 @@ const Signup = () => {
         console.log(username);
         console.log(password);
 
-        fetch("http://localhost:3002/admin/signup", {
+        fetch("http://localhost:3010/admin/signup", {
             method: "POST",
             body: JSON.stringify({
                 username: username, password: password

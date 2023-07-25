@@ -21,7 +21,7 @@ try {
     USERS = [];
     COURSES = [];
 }
-console.log(ADMINS);
+
 
 const SECRET = 'my-secret-key';
 
@@ -44,10 +44,7 @@ const authenticateJwt = (req, res, next) => {
 // Admin routes
 app.post('/admin/signup', (req, res) => {
     const { username, password } = req.body;
-    console.log(">>>>>", username);
-    console.log(".....", password);
     const admin = ADMINS.find(a => a.username === username);
-    console.log("admin signup");
     if (admin) {
         res.status(403).json({ message: 'Admin already exists' });
     } else {
@@ -151,4 +148,4 @@ app.get('/users/purchasedCourses', authenticateJwt, (req, res) => {
     }
 });
 
-app.listen(3002, () => console.log('Server running on port 3002'));
+app.listen(3010, () => console.log('Server running on port 3010'));
