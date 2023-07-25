@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useState } from 'react'
 import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
 import Card from '@mui/material/Card'
@@ -7,11 +7,10 @@ const Signup = () => {
     const [username, setUsername] = useState(null);
     const [password, setPassword] = useState(null);
     const submitHandler = (e) => {
-        e.preventDefault();
         console.log(username);
         console.log(password);
 
-        fetch("http://localhost:3001/admin/signup", {
+        fetch("http://localhost:3002/admin/signup", {
             method: "POST",
             body: JSON.stringify({
                 username: username, password: password
