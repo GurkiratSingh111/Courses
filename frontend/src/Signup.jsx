@@ -4,16 +4,16 @@ import TextField from '@mui/material/TextField'
 import Card from '@mui/material/Card'
 import { Typography } from '@mui/material'
 const Signup = () => {
-    const [username, setUsername] = useState(null);
+    const [email, setEmail] = useState(null);
     const [password, setPassword] = useState(null);
     const submitHandler = (e) => {
-        console.log(username);
+        console.log(email);
         console.log(password);
 
         fetch("http://localhost:3010/admin/signup", {
             method: "POST",
             body: JSON.stringify({
-                username: username, password: password
+                username: email, password: password
             }),
             headers: {
                 "Content-type": "application/json"
@@ -21,6 +21,7 @@ const Signup = () => {
         }).then(res => res.json())
             .then((data) => {
                 console.log(data);
+
             })
     }
     return (
@@ -35,7 +36,7 @@ const Signup = () => {
             </div>
             <div style={{ display: "flex", justifyContent: "center" }}>
                 <Card variant={"outlined"} style={{ width: 400, padding: 20 }}>
-                    <TextField fullWidth={true} onChange={(e) => { setUsername(e.target.value) }} id={"username"} label="Email" variant="outlined" />
+                    <TextField fullWidth={true} onChange={(e) => { setEmail(e.target.value) }} id={"username"} label="Email" variant="outlined" />
                     <br /><br />
                     <TextField fullWidth={true} onChange={(e) => { setPassword(e.target.value) }} id={"password"} label="Password" variant="outlined" />
                     <br /><br />
