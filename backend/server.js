@@ -41,6 +41,11 @@ const authenticateJwt = (req, res, next) => {
     }
 };
 
+app.get("/admin/me", authenticateJwt, (req, res) => {
+    res.json({ username: req.user.username });
+
+})
+
 // Admin routes
 app.post('/admin/signup', (req, res) => {
     const { username, password } = req.body;
@@ -147,5 +152,6 @@ app.get('/users/purchasedCourses', authenticateJwt, (req, res) => {
         res.status(403).json({ message: 'User not found' });
     }
 });
+
 
 app.listen(3010, () => console.log('Server running on port 3010'));

@@ -3,7 +3,9 @@ import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
 import Card from '@mui/material/Card'
 import { Typography } from '@mui/material'
+import { useNavigate } from 'react-router-dom'
 const Signup = () => {
+    const navigate = useNavigate();
     const [email, setEmail] = useState(null);
     const [password, setPassword] = useState(null);
     const submitHandler = (e) => {
@@ -21,6 +23,8 @@ const Signup = () => {
         }).then(res => res.json())
             .then((data) => {
                 localStorage.setItem("token", data.token);
+                window.location = "/";
+                //navigate('/')
                 console.log(data.token);
             })
     }
