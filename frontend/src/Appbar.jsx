@@ -14,7 +14,6 @@ const Appbar = () => {
             console.log(data);
             if (data.username) {
                 setUserEmail(data.username);
-
             }
         }
         function callback1(res) {
