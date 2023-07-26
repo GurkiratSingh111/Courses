@@ -38,14 +38,14 @@ const Course = () => {
         return <div>Loading...</div>
     }
     return (
-        <div>
+        <div style={{ display: "flex", justifyContent: "center" }}>
             <CourseCard course={course} />
-            <UpdateCard course={course} />
+            <UpdateCard courses={courses} course={course} setCourses={setCourses} />
         </div>
     )
 }
 
-function UpdateCard({ course }) {
+function UpdateCard({ course, setCourses, courses }) {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [image, setImage] = useState("");
@@ -66,6 +66,21 @@ function UpdateCard({ course }) {
         }).then(res => res.json())
             .then((data) => {
                 console.log(data);
+                let updatedCourses = [];
+                for (let i = 0; i < courses.length; i++) {
+                    if (courses[i].id === course.id) {
+                        updatedCourses.push({
+                            id: course.id,
+                            title: title,
+                            description: description,
+                            imageLink: image,
+                        });
+                    } else {
+                        updatedCourses.push(courses[i]);
+                    }
+                    setCourses(updatedCourses);
+                }
+
                 alert("course updated");
             })
     }
@@ -96,7 +111,7 @@ function UpdateCard({ course }) {
                     size={"large"}
                     variant="contained"
                     onClick={submitHandler}
-                >Add Course</Button>
+                >Update Course</Button>
             </div>
         </Card>
     </div>
@@ -104,18 +119,21 @@ function UpdateCard({ course }) {
 
 
 function CourseCard({ course }) {
-    return <Card style={{
-        margin: 10,
-        width: 300,
-        minHeight: 200,
+    return <div style={{ display: "flex", justifyContent: "center" }}>
+        <Card style={{
+            margin: 10,
+            width: 300,
+            minHeight: 200,
 
-    }}>
-        <Typography textAlign="center" variant="h6">{course.title}</Typography>
-        <Typography textAlign="center" variant="subtitle1">{course.description}</Typography>
-        <img src={course.imageLink} style={{
-            width: "100%",
-        }} />
-    </Card>
+        }}>
+
+            <Typography textAlign="center" variant="h6">{course.title}</Typography>
+            <Typography textAlign="center" variant="subtitle1">{course.description}</Typography>
+            <img src={course.imageLink} style={{
+                width: "100%",
+            }} />
+        </Card>
+    </div>
 }
 
 export default Course
